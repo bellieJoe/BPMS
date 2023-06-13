@@ -15,6 +15,13 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->string('address', 1000);
+            $table->string('mode_of_transport', 1000);
+            $table->date('date_of_transport', 1000);
+            $table->string('purpose', 5000);
+            $table->string('details', 5000);
+            $table->enum('status', ['approved', 'pending', 'dedclined']);
             $table->timestamps();
         });
     }
