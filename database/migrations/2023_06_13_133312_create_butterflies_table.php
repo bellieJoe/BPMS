@@ -22,10 +22,10 @@ class CreateButterfliesTable extends Migration
             $table->boolean('is_vulnerable');
             $table->string('input_code');
             $table->integer('wing_span');
-            $table->string('male_img_url', 1000);
-            $table->string('female_img_url', 1000);
-            $table->string('caterpillar_img_url', 1000);
-            $table->string('pupa_img_url', 1000);
+            $table->string('male_img_url', 1000)->nullable();
+            $table->string('female_img_url', 1000)->nullable();
+            $table->string('caterpillar_img_url', 1000)->nullable();
+            $table->string('pupa_img_url', 1000)->nullable();
             $table->timestamps();
         });
     }
