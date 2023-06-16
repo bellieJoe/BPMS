@@ -27,14 +27,14 @@
                 {{-- if business owner --}}
                 @if (auth()->user()->user_type == 2)
                 <li class="nav-item">
-                    <a href="#" class="nav-link ">
+                    <a href="{{ route('permits.create') }}" class="nav-link ">
                       <i class="fa-solid fa-upload nav-icon"></i>
                         <p>Submit Application</p>
                     </a>
                 </li>
                 {{-- if business owner --}}
                 <li class="nav-item">
-                    <a href="#" class="nav-link ">
+                    <a href="{{ route('permits.index') }}" class="nav-link ">
                         <i class="fa-solid fa-file-contract nav-icon"></i>
                         <p>My Applications</p>
                     </a>
@@ -43,9 +43,27 @@
                 {{-- if admin --}}
                 @if (auth()->user()->user_type == 1)
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fa-solid fa-file-contract nav-icon"></i>
-                        <p>Applications</p>
+                    <a href="{{ route('permits.indexAdmin') }}" class="nav-link">
+                        <i class="fa-solid fa-file-contract nav-icon "></i>
+                        <p>All Applications</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('permits.indexAdmin', ['status' => 'pending']) }}" class="nav-link">
+                        <i class="fa-solid fa-file-contract nav-icon text-primary"></i>
+                        <p>Pending Applications</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('permits.indexAdmin', ['status' => 'approved']) }}" class="nav-link">
+                        <i class="fa-solid fa-file-contract nav-icon text-success"></i>
+                        <p>Approved Applications</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('permits.indexAdmin', ['status' => 'declined']) }}" class="nav-link">
+                        <i class="fa-solid fa-file-contract nav-icon text-danger"></i>
+                        <p>Declined Applications</p>
                     </a>
                 </li>
                 @endif
@@ -55,7 +73,7 @@
           {{-- if admin --}}
           @if (auth()->user()->user_type == 1)
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('butterflies.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>Butterfly List</p>
             </a>

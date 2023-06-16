@@ -15,7 +15,7 @@ class ButterflyController extends Controller
     public function index(){
 
         return view('main.butterfly.index')->with([
-            'butterflies' => Butterfly::all()
+            'butterflies' => Butterfly::paginate(20)
         ]);
     }
     public function viewImage($url){

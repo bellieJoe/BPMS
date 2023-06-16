@@ -53,6 +53,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {{ $butterflies }}
         </div>
     </div>
 @endsection

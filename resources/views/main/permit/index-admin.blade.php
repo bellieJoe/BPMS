@@ -4,7 +4,6 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page">Permits</li>
         </ol>
-        <a class="btn btn-primary" href="{{ route('permits.create') }}">Apply for Permit</a>
         <br><br>
         <div class="table-responsive">
             <table class="table text-center table-bordered">
@@ -33,12 +32,18 @@
                             <td>{{ $permit->details}}</td>
                             <td>{{ $permit->status}}</td>
                             <td>
-                                <a href="{{ route('permits.edit', ['id' => $permit->id]) }}" class="btn btn-sm btn-secondary m-1">Edit</a>
-                                <form action="{{ route('permits.destroy', ['id' => $permit->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger m-1">Delete</button>
-                                </form>
+                                @if ($permit->status == 'pending')
+                                    <form action="{{ route('permits.approve', ['id' => $permit->id]) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-sm btn-success m-1" type="submit">Approve</button>
+                                    </form>
+                                    <form action="{{ route('permits.decline', ['id' => $permit->id]) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn btn-sm btn-danger m-1" type="submit">Decline</button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @empty
