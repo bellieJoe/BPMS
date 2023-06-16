@@ -39,6 +39,7 @@
                             <td><a target="_blank" href="{{ route('butterflies.viewImage', ['url' => $butterfly->pupa_img_url]) }}">{{ $butterfly->pupa_img_url }}</a></td>
                             <td><a target="_blank" href="{{ route('butterflies.viewImage', ['url' => $butterfly->caterpillar_img_url]) }}">{{ $butterfly->caterpillar_img_url }}</a></td>
                             <th>
+                                <a href="{{ route('butterflies.edit', ['id' => $butterfly->id]) }}" class="btn btn-sm m-1 btn-primary">Edit</a>
                                 <form action="{{ route('butterflies.destroy', ['id' => $butterfly->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')

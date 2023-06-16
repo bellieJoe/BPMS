@@ -43,6 +43,8 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.'], function(){
 Route::group(['prefix' => 'butterflies', 'as' => 'butterflies.', 'middleware' => ['auth']], function(){
     Route::get('', [ButterflyController::class , 'index'])->name('index');
     Route::get('create', [ButterflyController::class , 'create'])->name('create');
+    Route::get('edit/{id}', [ButterflyController::class , 'edit'])->name('edit');
+    Route::put('update/{id}', [ButterflyController::class , 'update'])->name('update');
     Route::post('store', [ButterflyController::class , 'store'])->name('store');
     Route::delete('delete/{id}', [ButterflyController::class , 'destroy'])->name('destroy');
     Route::get('view-image/{url}', [ButterflyController::class , 'viewImage'])->name('viewImage');
