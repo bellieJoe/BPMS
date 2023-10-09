@@ -15,9 +15,10 @@
                         <th>Mode of Transportation</th>
                         <th>Date of Transportation</th>
                         <th>Purpose</th>
-                        <th>Species</th>
+                        {{-- <th>Species</th> --}}
                         <th>Butterfly Details</th>
                         <th>Status</th>
+                        <th>Butterflies</th>
                         <th><i class="fa-solid fa-gear"></i></th>
                     </tr>
                 </thead>
@@ -29,11 +30,13 @@
                             <td>{{ $permit->mode_of_transport }}</td>
                             <td>{{ $permit->date_of_transport->format('F d, Y') }}</td>
                             <td>{{ $permit->purpose}}</td>
-                            <td>{{ $permit->butterfly->local_name}}({{  $permit->butterfly->species }})</td>
+                            {{-- <td>{{ $permit->butterfly->local_name}}({{  $permit->butterfly->species }})</td> --}}
                             <td>{{ $permit->details}}</td>
                             <td>{{ $permit->status}}</td>
+                            <td><a href="#" class="btn btn-sm btn-primary m-1">View List</a></td>
                             <td>
                                 <a href="{{ route('permits.edit', ['id' => $permit->id]) }}" class="btn btn-sm btn-secondary m-1">Edit</a>
+                                
                                 <form action="{{ route('permits.destroy', ['id' => $permit->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
