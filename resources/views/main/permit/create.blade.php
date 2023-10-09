@@ -23,16 +23,16 @@
                         <span class="text-danger">{{ $message }}</span><br>
                     @enderror
                 </div>
-                <div class="col-lg-6 mb-3">
+                <div class="col mb-3">
                     <label for="">Date of Transport</label>
                     <input type="date" class="form-control" name="date_of_transport">
                     @error('date_of_transport')
                         <span class="text-danger">{{ $message }}</span><br>
                     @enderror
                 </div>
-                <div class="col-lg-6 mb-3">
-                    <label for="">Butterfly Species</label>
-                    <select name="species" id="" class="form-control">
+                <div class="col-12 mb-3">
+                    <label for="">Butterfly Species</label><br>
+                    <select name="species[]" id="" class="select2 form-control-sm w-100" multiple>
                         <option value="">-Select Butterfly Species-</option>
                         @foreach ($butterflies as $butterfly)
                         <option value="{{ $butterfly->id }}">{{ $butterfly->local_name }}({{ $butterfly->species }})</option>
