@@ -55,6 +55,7 @@ Route::group(['prefix' => 'permits', 'as' => 'permits.', 'middleware' => ['auth'
     Route::get('index-admin', [ApplicationController::class , 'indexAdmin'])->name('indexAdmin');
     Route::get('edit/{id}', [ApplicationController::class , 'edit'])->name('edit');
     Route::get('create', [ApplicationController::class , 'create'])->name('create');
+    Route::get('view-butterflies/{application_id}', [ApplicationController::class , 'viewButterflies'])->name('viewButterflies');
     Route::post('store', [ApplicationController::class , 'store'])->name('store');
     Route::put('update/{id}', [ApplicationController::class , 'update'])->name('update');
     Route::put('approve/{id}', [ApplicationController::class , 'approve'])->name('approve');

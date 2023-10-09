@@ -30,8 +30,8 @@
                             <td>{{ $permit->purpose}}</td>
                             {{-- <td>{{ $permit->butterfly->local_name}}({{  $permit->butterfly->species }})</td> --}}
                             <td>{{ $permit->details}}</td>
-                            <td>{{ $permit->status}}</td>
-                            <td><a href="#" class="btn btn-sm btn-primary m-1">View List</a></td>
+                            <td >{{ $permit->status}}</td>
+                            <td><a href="{{ route('permits.viewButterflies', ['application_id' => $permit->id]) }}" class="btn btn-sm btn-primary m-1">View List</a></td>
                             <td>
                                 @if ($permit->status == 'pending')
                                     <form action="{{ route('permits.approve', ['id' => $permit->id]) }}" method="POST">

@@ -102,4 +102,14 @@ class ApplicationController extends Controller
         ]);
         return redirect()->back();
     }
+
+    public function viewButterflies($application_id){
+        $application = Application::find($application_id);
+        $butterflies = Butterfly::whereIn('id', json_decode($application->species))->get();
+        return view('main.permit.view-butterflies')
+        ->with([
+            'permit' => $application,
+            'butterflies' => $butterflies
+        ]);
+    }
 }
