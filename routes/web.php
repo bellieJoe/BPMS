@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ButterflyController;
 use App\Http\Controllers\ApplicationController;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,4 +60,9 @@ Route::group(['prefix' => 'permits', 'as' => 'permits.', 'middleware' => ['auth'
     Route::put('approve/{id}', [ApplicationController::class , 'approve'])->name('approve');
     Route::put('decline/{id}', [ApplicationController::class , 'decline'])->name('decline');
     Route::delete('delete/{id}', [ApplicationController::class , 'destroy'])->name('destroy');
+});
+
+Route::get("test-pdf", function(){
+    $pdf = Pdf::loadView('auth.signin');
+    return $pdf->stream();
 });
