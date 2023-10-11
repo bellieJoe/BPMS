@@ -31,12 +31,27 @@
                         <span class="text-danger">{{ $message }}</span><br>
                     @enderror
                 </div>
-                <div class="col-lg-6 mb-3">
+                {{-- <div class="col-lg-6 mb-3">
                     <label for="">Butterfly Species</label>
                     <select name="species" id="" class="form-control">
                         <option value="">-Select Butterfly Species-</option>
                         @foreach ($butterflies as $butterfly)
                         <option value="{{ $butterfly->id }}" {{ $permit->butterfly_id == $butterfly->id ? 'selected' : '' }}>{{ $butterfly->local_name }}({{ $butterfly->species }})</option>
+                        @endforeach
+                    </select>
+                    @error('species')
+                        <span class="text-danger">{{ $message }}</span><br>
+                    @enderror
+                </div> --}}
+                @php
+                    $species = json_decode($permit->species);    
+                @endphp
+                <div class="col-12 mb-3">
+                    <label for="">Butterfly Species</label><br>
+                    <select name="species[]" id="" class="select2 form-control-sm w-100" multiple>
+                        <option value="">-Select Butterfly Species-</option>
+                        @foreach ($butterflies as $butterfly)
+                        <option {{ in_array($butterfly->id, $species) ? 'selected' : '' }} value="{{ $butterfly->id }}">{{ $butterfly->local_name }}({{ $butterfly->species }})</option>
                         @endforeach
                     </select>
                     @error('species')

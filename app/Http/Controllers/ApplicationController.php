@@ -80,12 +80,13 @@ class ApplicationController extends Controller
 
         DB::transaction(function () use($request, $id) {
             $permit = Application::find($id)->update([
-                'butterfly_id' => $request->species,
+                'butterfly_id' => 0,
                 'address' => $request->address,
                 'mode_of_transport' => $request->mode_of_transport,
                 'date_of_transport' => $request->date_of_transport,
                 'purpose' => $request->purpose,
                 'details' => $request->details,
+                'species' => json_encode($request->species)
             ]);
         });
         return redirect(route('permits.index'));
