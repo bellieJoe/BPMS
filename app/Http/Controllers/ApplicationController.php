@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Butterfly;
 use App\Models\Application;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ApplicationController extends Controller
 {
@@ -131,5 +132,19 @@ class ApplicationController extends Controller
             'butterflies' => $butterflies,
             'species' => $species
         ]);
+    }
+
+    public function print($id){
+        $permit = Application::find($id);
+        $species = (array)json_decode($permit->species);
+        $butterflies = Butterfly::whereIn('id', array_keys($species))->get();
+        $data = [
+            'permit' => $permit,
+            'species' => $species,
+            'butterflies' => $butterflies
+        ];
+        // return view('main.permit.print-permit')->with($data);
+        $pdf = Pdf::loadView('main.permit.print-permit', $data);
+        return $pdf->stream();
     }
 }

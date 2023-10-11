@@ -62,6 +62,7 @@ Route::group(['prefix' => 'permits', 'as' => 'permits.', 'middleware' => ['auth'
     Route::put('approve/{id}', [ApplicationController::class , 'approve'])->name('approve');
     Route::put('decline/{id}', [ApplicationController::class , 'decline'])->name('decline');
     Route::delete('delete/{id}', [ApplicationController::class , 'destroy'])->name('destroy');
+    Route::get('print/{id}', [ApplicationController::class , 'print'])->name('print');
 });
 
 Route::get("test-pdf", function(){

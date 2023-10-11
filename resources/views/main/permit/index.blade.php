@@ -38,6 +38,9 @@
                                 @if($permit->status == 'pending')
                                     <a href="{{ route('permits.edit', ['id' => $permit->id]) }}" class="btn btn-sm btn-secondary m-1">Edit</a>
                                 @endif
+                                @if($permit->status == 'approved')
+                                    <a href="{{ route('permits.print', ['id' => $permit->id]) }}" class="btn btn-sm btn-success m-1">Print</a>
+                                @endif
                                 <form action="{{ route('permits.destroy', ['id' => $permit->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
