@@ -57,7 +57,7 @@
                     @enderror
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">File Application</button>
+            <button class="btn btn-primary" type="submit">Next</button>
         </form>
     </section>
 @endsection

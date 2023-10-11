@@ -41,8 +41,9 @@ class ApplicationController extends Controller
             'details' => 'required',
         ]);
 
-        DB::transaction(function () use($request) {
-            Application::create([
+        $permit = null;
+        return DB::transaction(function () use($request) {
+            $permit = Application::create([
                 'butterfly_id' => 0,
                 'address' => $request->address,
                 'user_id' => auth()->user()->id,
@@ -53,6 +54,20 @@ class ApplicationController extends Controller
                 'status' => 'pending',
                 'species' => json_encode($request->species)
             ]);
+            $permit->refresh();
+            return view('main.permit.set-b-qty')
+            ->with([
+                'permit' => $permit,
+                'butterflies' => Butterfly::whereIn('id', $request->species)->get()
+            ]);
+        });
+    }
+    public function store2(Request $request){
+        DB::transaction(function() use ($request){
+            Application::where('id', $request->permit_id)
+            ->update([
+                'species' => $request->except(['permit_id', '_token'])
+            ]);
         });
         return redirect(route('permits.index'));
     }
@@ -62,6 +77,8 @@ class ApplicationController extends Controller
     }
     public function edit($id){
         $permit = Application::find($id);
+        $species = (array)json_decode($permit->species);
+        // return array_keys($species);
         return view('main.permit.edit')->with([
             'permit' => $permit,
             'butterflies' => Butterfly::all()
@@ -106,11 +123,13 @@ class ApplicationController extends Controller
 
     public function viewButterflies($application_id){
         $application = Application::find($application_id);
-        $butterflies = Butterfly::whereIn('id', json_decode($application->species))->get();
+        $species = (array)json_decode($application->species);
+        $butterflies = Butterfly::whereIn('id', array_keys($species))->get();
         return view('main.permit.view-butterflies')
         ->with([
             'permit' => $application,
-            'butterflies' => $butterflies
+            'butterflies' => $butterflies,
+            'species' => $species
         ]);
     }
 }

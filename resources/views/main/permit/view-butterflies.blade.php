@@ -48,20 +48,12 @@
 
     <h5>List of Butterflies</h5>
     {{-- {{$butterflies}} --}}
-    <table class="table-sm table-bordered small w-100">
+    <table class="table-sm table-bordered small">
         <thead>
             <tr>
                 <th>Species</th>
                 <th>Local Name</th>
-                <th>Is Rare</th>
-                <th>Is Threatened</th>
-                <th>Is Vulnerable</th>
-                <th>Input Code</th>
-                <th>Wingspan</th>
-                <th>Male</th>
-                <th>Female</th>
-                <th>Caterpillar</th>
-                <th>Pupa</th>
+                <th>Quantity</th>
             </tr>
         </thead>
         <tbody>
@@ -69,15 +61,7 @@
             <tr>
                 <td>{{$b->species}}</td>
                 <td>{{$b->local_name}}</td>
-                <td>{{$b->is_rare ? 'Yes' : 'No'}}</td>
-                <td>{{$b->is_threatened ? 'Yes' : 'No'}}</td>
-                <td>{{$b->is_vulnerable ? 'Yes' : 'No'}}</td>
-                <td>{{$b->input_code}}</td>
-                <td>{{$b->wing_span}} cm</td>
-                <td><a target="_blank" href="{{ route('butterflies.viewImage', ['url' => $b->male_img_url]) }}">{{ $b->male_img_url }}</a></td>
-                <td><a target="_blank" href="{{ route('butterflies.viewImage', ['url' => $b->female_img_url]) }}">{{ $b->female_img_url }}</a></td>
-                <td><a target="_blank" href="{{ route('butterflies.viewImage', ['url' => $b->pupa_img_url]) }}">{{ $b->pupa_img_url }}</a></td>
-                <td><a target="_blank" href="{{ route('butterflies.viewImage', ['url' => $b->caterpillar_img_url]) }}">{{ $b->caterpillar_img_url }}</a></td>
+                <td>{{ $species[$b->id]}}</td>
             </tr>
             @endforeach
         </tbody>

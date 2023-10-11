@@ -44,9 +44,25 @@
                     @enderror
                 </div> --}}
                 @php
-                    $species = json_decode($permit->species);    
+                    $species = (array)json_decode($permit->species);    
                 @endphp
-                <div class="col-12 mb-3">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <th>Species</th>
+                        <th>Quantity</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($butterflies as $butterfly)
+                                @if (in_array($butterfly->id, array_keys($species)))
+                                <tr>
+                                    <td>{{ $butterfly->species }}</td>
+                                    <td>{{$species[$butterfly->id]}}</td>
+                                </tr>
+                                @endif
+                        @endforeach
+                    </tbody>
+                </table>
+                {{-- <div class="col-12 mb-3">
                     <label for="">Butterfly Species</label><br>
                     <select name="species[]" id="" class="select2 form-control-sm w-100" multiple>
                         <option value="">-Select Butterfly Species-</option>
@@ -57,7 +73,7 @@
                     @error('species')
                         <span class="text-danger">{{ $message }}</span><br>
                     @enderror
-                </div>
+                </div> --}}
                 <div class="col-12 mb-3">
                     <label for="">Purpose</label>
                     <textarea name="purpose" id="" class="form-control" >{{ $permit->purpose }}</textarea>
