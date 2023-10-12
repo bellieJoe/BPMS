@@ -9,6 +9,7 @@ use App\Models\Butterfly;
 use App\Models\Application;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 class ApplicationController extends Controller
 {
@@ -110,9 +111,26 @@ class ApplicationController extends Controller
         return redirect(route('permits.index'));
     }
     public function approve($id){
-        Application::find($id)->update([
-            'status' => 'approved'
-        ]);
+         DB::transaction(function() use($id){
+            Application::find($id)->update([
+                'status' => 'approved'
+            ]);
+
+            $application =  Application::find($id);;
+    
+            $to_name = $application->user->name;
+            $to_email = $application->user->email;
+            $data = ['permit' => $application];
+
+             view("emails.mail")->with($data);
+    
+            Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+                $message->to($to_email, $to_name)
+                ->subject("Permit Application");
+                $message->from("denr@mail.com","Permit Application");
+            });
+        });
+
         return redirect()->back();
     }
     public function decline($id){

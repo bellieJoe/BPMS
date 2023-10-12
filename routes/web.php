@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ButterflyController;
 use App\Http\Controllers\ApplicationController;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,4 +69,15 @@ Route::group(['prefix' => 'permits', 'as' => 'permits.', 'middleware' => ['auth'
 Route::get("test-pdf", function(){
     $pdf = Pdf::loadView('auth.signin');
     return $pdf->stream();
+});
+
+Route::get("test", function(){
+    $to_name = "asd";
+    $to_email = "nurjumam@ondemandemail.top";
+    $data = array("name"=>"Ogbonna Vitalis(sender_name)", "body" => "A test mail");
+    Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+        $message->to($to_email, $to_name)
+        ->subject("Laravel Test Mail");
+        $message->from("denr@mail.com","Test Mail");
+    });
 });
