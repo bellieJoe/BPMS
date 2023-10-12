@@ -7,7 +7,7 @@
         <a class="btn btn-primary" href="{{ route('permits.create') }}">Apply for Permit</a>
         <br><br>
         {{-- <img src="{{asset('images/denr_logo.png')}}" alt="" style="width: 100px;"> --}}
-        <img src="https://eascongress2018.pemsea.org/wp-content/uploads/2018/04/DENR-logo.png" alt="" style="width: 100px;">
+        {{-- <img src="https://eascongress2018.pemsea.org/wp-content/uploads/2018/04/DENR-logo.png" alt="" style="width: 100px;"> --}}
         <div class="table-responsive">
             
             <table class="table text-center table-bordered">
@@ -39,7 +39,7 @@
                             <td><a href="{{ route('permits.viewButterflies', ['application_id' => $permit->id]) }}" class="btn btn-sm btn-primary m-1">View List</a></td>
                             <td>
                                 @if($permit->status == 'pending')
-                                    <a href="{{ route('permits.edit', ['id' => $permit->id]) }}" class="btn btn-sm btn-secondary m-1">Edit</a>
+                                    <a href="{{ route('permits.edit', ['id' => $permit->id]) }}" class="btn btn-sm btn-secondary m-1">View Details</a>
                                 @endif
                                 @if($permit->status == 'approved')
                                     <a href="{{ route('permits.print', ['id' => $permit->id]) }}" class="btn btn-sm btn-success m-1">Print</a>

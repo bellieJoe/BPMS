@@ -138,6 +138,9 @@ class ApplicationController extends Controller
         $permit = Application::find($id);
         $species = (array)json_decode($permit->species);
         $butterflies = Butterfly::whereIn('id', array_keys($species))->get();
+        if($permit->status != 'approved'){
+            return abort(404);
+        }
         $data = [
             'permit' => $permit,
             'species' => $species,

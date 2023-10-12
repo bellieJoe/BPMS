@@ -66,5 +66,15 @@
             @endforeach
         </tbody>
     </table>
+
+    <br><br>
+    <h6>QR Code:</h6>
+    <div class="" id="qrcode"></div>
 </section>
+<script src="{{asset('/js/qrcodejs/qrcode.js')}}"></script>
+<script type="text/javascript">
+    $(function(){
+        new QRCode(document.getElementById("qrcode"), "{{ route('permits.print', ['id' => $permit->id]) }}}");
+    })
+</script>
 @endsection
