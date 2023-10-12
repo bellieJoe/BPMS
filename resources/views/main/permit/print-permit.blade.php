@@ -9,9 +9,6 @@
     {{-- JQuery --}}
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-    {{-- select2 --}}
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <style>
         *{
             font-family:'Times New Roman', Times, serif  !important;
@@ -23,16 +20,30 @@
             font-weight: bold;
         }
         .border-bottom{
-            border: 3px solid black;
+            border-top: 2px solid black;
+        }
+        .border-bottom2{
+            border-top: 3px solid black;
+        }
+        .red{
+            color: rgb(54, 10, 5);
         }
     </style>
     <title>Print Permit</title>
 </head>
 <body >
-    <div class="">
-        <img src="{{asset('public/denr_logo.jpg')}}" alt="">
+    <div class="header">
+        <div style="display: inline-block">
+            <img src="https://eascongress2018.pemsea.org/wp-content/uploads/2018/04/DENR-logo.png" alt="" style="width: 60px;">
+        </div>
+        <div style="display: inline-block">
+            <p for="" style="margin: 0px !important" class="small">Republic of the Philippines</p>
+            <p for="" style="margin: 0px !important" class="small">Department of Evironment and Natural Resources</p>
+            <p for="" style="margin: 0px !important" class="small">PENRO MARINDUQUE</p>
+        </div>
+        <hr class="border-bottom2 red" style="border-color: rgb(54, 10, 5)">
     </div>
-    <section class="p-3 py-5">
+    <section class="p-5 py-3">
         <h6 class="small bold">Wildlife Transport</h6>
         <h6 class="small bold">Permit No.</h6>
         <h6 class="small bold">{{$permit->id}}</h6>
@@ -62,13 +73,13 @@
             </tbody>
         </table>
 
-        <hr>
+        <hr class="border-bottom">
 
         <p class="small">The above mentioned specimens shall be transported by <u>{{$permit->mode_of_transport}}</u> on or before <u>{{$permit->date_of_transport->format("F d, Y")}}</u> and have been inspected and verified to be collected/acquired on accordance with existing wildlife laws, rules and regulations.</p>
         <p class="small">Transport fee in amount of <u>Php100</u> was paid under the DENR PENRO Official Receipt No. ______ dated <u>{{$permit->updated_at->format("F d, Y")}}</u> </p>
 
         <p class="text-center text-italic small"><i>This permit is not valid if contains erasure or alteration</i></p>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    
 </body>
 </html>

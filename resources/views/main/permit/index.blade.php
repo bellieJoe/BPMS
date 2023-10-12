@@ -6,7 +6,10 @@
         </ol>
         <a class="btn btn-primary" href="{{ route('permits.create') }}">Apply for Permit</a>
         <br><br>
+        {{-- <img src="{{asset('images/denr_logo.png')}}" alt="" style="width: 100px;"> --}}
+        <img src="https://eascongress2018.pemsea.org/wp-content/uploads/2018/04/DENR-logo.png" alt="" style="width: 100px;">
         <div class="table-responsive">
+            
             <table class="table text-center table-bordered">
                 <thead class="thead-dark">
                     <tr>
