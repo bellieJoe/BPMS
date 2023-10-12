@@ -33,6 +33,9 @@
                             <td >{{ $permit->status}}</td>
                             <td><a href="{{ route('permits.viewButterflies', ['application_id' => $permit->id]) }}" class="btn btn-sm btn-primary m-1">View List</a></td>
                             <td>
+                                @if($permit->status == 'approved')
+                                    <a href="{{ route('permits.print', ['id' => $permit->id]) }}" class="btn btn-sm btn-success m-1">Print</a>
+                                @endif
                                 @if ($permit->status == 'pending')
                                     <form action="{{ route('permits.approve', ['id' => $permit->id]) }}" method="POST">
                                         @csrf
