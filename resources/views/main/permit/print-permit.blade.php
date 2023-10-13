@@ -79,6 +79,10 @@
         <p class="small">Transport fee in amount of <u>Php100</u> was paid under the DENR PENRO Official Receipt No. ______ dated <u>{{$permit->updated_at->format("F d, Y")}}</u> </p>
 
         <p class="text-center text-italic small"><i>This permit is not valid if contains erasure or alteration</i></p>
+        
+        <br><br>
+        <p class="text-right" style="margin-bottom: 0px"><strong>IMELDA M. DIAZ</strong></p>
+        <p class="text-right">OIC - PENR Officer</p>
     </section>
     
 </body>
