@@ -22,6 +22,7 @@ class CreateApplicationsTable extends Migration
             $table->date('date_of_transport', 1000);
             $table->string('purpose', 5000);
             $table->string('details', 5000);
+            
             $table->enum('status', ['approved', 'pending', 'declined']);
             $table->timestamps();
         });
